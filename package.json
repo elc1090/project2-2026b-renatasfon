@@ -1,0 +1,32 @@
+{
+  "name": "project2-2026b-renatasfon",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/elc1090/project2-2026b-renatasfon.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/elc1090/project2-2026b-renatasfon/issues"
+  },
+  "homepage": "https://github.com/elc1090/project2-2026b-renatasfon#readme",
+  "devDependencies": {
+    "@types/express": "^5.0.6",
+    "@types/node": "^22.20.2",
+    "prisma": "7.10.0",
+    "tsx": "^4.23.13",
+    "typescript": "^7.0.2"
+  },
+  "dependencies": {
+    "@prisma/client": "7.10.0",
+    "express": "^5.2.1"
+  }
+}
