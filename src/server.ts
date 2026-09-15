@@ -1,5 +1,6 @@
 import express from "express";
 import prisma from "./prisma.js";
+import usuariosRoutes from "./routes/usuarios.routes.js";
 
 const app = express();
 
@@ -11,11 +12,7 @@ app.get("/", (req, res) => {
     });
 });
 
-app.get("/usuarios", async (req, res) => {
-    const usuarios = await prisma.usuario.findMany();
-
-    res.json(usuarios);
-});
+app.use("/usuarios", usuariosRoutes);
 
 app.listen(3000, () => {
     console.log("Servidor rodando em http://localhost:3000");

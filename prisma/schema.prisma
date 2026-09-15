@@ -15,7 +15,7 @@ datasource db {
 model Usuario {
   id        Int      @id @default(autoincrement())
   nome      String
-  email     String   @unique
+  email     String?   @unique
   tipo      TipoUsuario
 
   pedidos   Pedido[]
