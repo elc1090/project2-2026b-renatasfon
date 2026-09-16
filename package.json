@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/elc1090/project2-2026b-renatasfon#readme",
   "devDependencies": {
+    "@types/cors": "^2.8.19",
     "@types/express": "^5.0.6",
     "@types/node": "^22.20.2",
     "prisma": "7.10.0",
@@ -28,6 +29,7 @@
   "dependencies": {
     "@prisma/adapter-pg": "^7.10.0",
     "@prisma/client": "7.10.0",
+    "cors": "^2.8.6",
     "express": "^5.2.1",
     "pg": "^8.23.0"
   },
