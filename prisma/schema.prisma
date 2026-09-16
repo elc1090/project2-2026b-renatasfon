@@ -65,6 +65,8 @@ model Interesse {
 
   pedido    Pedido  @relation(fields: [pedidoId], references: [id])
   doador    Usuario @relation(fields: [doadorId], references: [id])
+
+  @@unique([pedidoId, doadorId])
 }
 
 enum TipoUsuario {
