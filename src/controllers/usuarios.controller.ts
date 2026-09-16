@@ -15,11 +15,23 @@ export async function listarUsuarios(req: Request, res: Response) {
 }
 
 export async function criarUsuario(req: Request, res: Response) {
-    const { nome, email, tipo } = req.body;
+    const { nome, matricula, email, tipo } = req.body;
 
     if (!nome || !tipo) {
         return res.status(400).json({
             erro: "Nome e tipo são obrigatórios."
+        });
+    }
+
+    if (tipo === "ALUNO" && !matricula) {
+        return res.status(400).json({
+            erro: "Aluno deve possuir matrícula."
+        });
+    }
+
+    if (tipo === "DOADOR" && matricula) {
+        return res.status(400).json({
+            erro: "Doador não deve possuir matrícula."
         });
     }
 
@@ -47,6 +59,7 @@ export async function criarUsuario(req: Request, res: Response) {
         const usuario = await prisma.usuario.create({
             data: {
                 nome,
+                matricula: matricula || null,
                 email: email || null,
                 tipo,
             },
@@ -67,6 +80,101 @@ export async function criarUsuario(req: Request, res: Response) {
                 erro: "Erro interno do servidor."
             });
         }
+}
+
+export async function buscarAluno(
+    req: Request,
+    res: Response
+) {
+    const matricula = req.query.matricula;
+    const nome = req.query.nome;
+
+    if (
+        typeof matricula !== "string" ||
+        !matricula.trim() ||
+        typeof nome !== "string" ||
+        !nome.trim()
+    ) {
+        return res.status(400).json({
+            erro: "Matrícula e nome são obrigatórios."
+        });
+    }
+
+    try {
+
+        const aluno = await prisma.usuario.findFirst({
+            where: {
+                matricula: matricula.trim(),
+                nome: nome.trim(),
+                tipo: "ALUNO"
+            }
+        });
+
+        if (!aluno) {
+            return res.status(404).json({
+                erro: "Aluno não encontrado. Verifique a matrícula e o nome."
+            });
+        }
+
+        return res.json({
+            id: aluno.id,
+            nome: aluno.nome,
+            matricula: aluno.matricula,
+            tipo: aluno.tipo
+        });
+
+    } catch (erro) {
+
+        return res.status(500).json({
+            erro: "Erro interno do servidor."
+        });
+    }
+}
+
+export async function buscarDoadorPorEmail(
+    req: Request,
+    res: Response
+) {
+    const email = req.query.email;
+
+    if (typeof email !== "string" || !email.trim()) {
+        return res.status(400).json({
+            erro: "Email é obrigatório."
+        });
+    }
+
+    try {
+        const doador = await prisma.usuario.findUnique({
+            where: {
+                email: email.trim()
+            }
+        });
+
+        if (!doador) {
+            return res.status(404).json({
+                erro: "Doador não encontrado."
+            });
+        }
+
+        if (doador.tipo !== "DOADOR") {
+            return res.status(400).json({
+                erro: "O email informado não pertence a um doador."
+            });
+        }
+
+        return res.json({
+            id: doador.id,
+            nome: doador.nome,
+            email: doador.email,
+            tipo: doador.tipo
+        });
+
+    } catch (erro) {
+
+        return res.status(500).json({
+            erro: "Erro interno do servidor."
+        });
+    }
 }
 
 export async function listarPedidosDoAluno(

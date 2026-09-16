@@ -42,6 +42,11 @@
 
             </div>
 
+            <p class="acessoDoador">
+                Já é doador?
+               <button id="botaoJaSouDoador">Acessar pedidos</button>
+           </p>
+
         </section>
 
 
@@ -89,6 +94,228 @@
             </button>
         </section>
 
+        <!-- Tela de escolha do aluno -->
+        <section id="telaEscolhaAluno" class="tela-escondida">
+
+            <h1>Área do aluno</h1>
+
+            <p>
+                Você já possui cadastro?
+            </p>
+
+            <div class="opcoesAluno">
+
+            <button id="botaoAlunoCadastrado">
+                Já tenho cadastro
+            </button>
+
+            <button id="botaoPrimeiroCadastro">
+                Primeiro acesso
+            </button>
+
+            </div>
+
+            <button id="botaoVoltarEscolhaAluno">
+                ← Voltar
+           </button>
+
+        </section>
+
+        <!-- Tela de acesso do aluno -->
+        <section id="telaAcessoAluno" class="tela-escondida">
+
+            <h1>Já tenho cadastro</h1>
+
+            <p>
+                Informe seu nome e sua matrícula para acessar seus pedidos.
+            </p>
+
+            <form id="formularioAcessoAluno">
+
+                <label for="nomeAcessoAluno">
+                    Nome
+                </label>
+
+                <input
+                    type="text"
+                    id="nomeAcessoAluno"
+                    placeholder="Digite seu nome"
+                    required
+                >
+
+                <label for="matriculaAcessoAluno">
+                    Matrícula
+                </label>
+
+                <input
+                    type="text"
+                    id="matriculaAcessoAluno"
+                    placeholder="Digite sua matrícula"
+                    required
+                >
+
+                <button type="submit">
+                    Acessar
+                </button>
+
+            </form>
+
+            <button id="botaoVoltarAcessoAluno">
+                ← Voltar
+            </button>
+
+        </section>
+
+        <!-- Tela de cadastro do aluno -->
+        <section id="telaAluno" class="tela-escondida">
+
+            <h1>Sou aluno</h1>
+
+             <p>
+                Informe seus dados para solicitar os materiais necessários.
+             </p>
+
+            <form id="formularioAluno">
+
+                <label for="nomeAluno">
+                    Nome
+                </label>
+
+                <input
+                    type="text"
+                    id="nomeAluno"
+                    placeholder="Digite seu nome"
+                    required
+                >
+
+                <label for="matriculaAluno">
+                    Matrícula
+                </label>
+
+                <input
+                    type="text"
+                    id="matriculaAluno"
+                    placeholder="Digite sua matrícula"
+                    required
+                >
+
+                <button type="submit">
+                    Continuar
+                </button>
+
+            </form>
+
+           <button id="botaoVoltarAluno">
+                ← Voltar
+           </button>
+
+         </section>
+
+        <!-- Tela de criação do pedido -->
+        <section id="telaCriarPedido" class="tela-escondida">
+
+            <button type="button" id="botaoMeusPedidos">
+                Meus pedidos
+            </button>
+
+            <h1>Solicitar materiais</h1>
+
+            <p>
+                Informe o que você precisa para seus estudos.
+            </p>
+
+            <form id="formularioPedido">
+
+                <label for="tituloPedido">
+                    Título do pedido
+                </label>
+
+                <input
+                    type="text"
+                    id="tituloPedido"
+                    placeholder="Ex.: Materiais escolares"
+                    required
+                >
+
+                <label for="descricaoPedido">
+                    Descrição
+                </label>
+
+                <textarea
+                    id="descricaoPedido"
+                    placeholder="Conte um pouco sobre o que você precisa..."
+                    required
+                ></textarea>
+
+                <p class="tituloMateriais">
+                    Materiais necessários
+                </p>
+
+                <div id="listaMateriais"></div>
+
+                <button type="submit">
+                    Enviar pedido
+                </button>
+
+            </form>
+
+            <button id="botaoVoltarCriarPedido">
+                ← Voltar
+            </button>
+
+        </section>
+
+        <!-- Tela de meus pedidos -->
+        <section id="telaMeusPedidos" class="tela-escondida">
+
+            <h1>Meus pedidos</h1>
+
+            <p>
+                Veja os pedidos de materiais que você já solicitou.
+            </p>
+
+            <div id="listaMeusPedidos"></div>
+
+            <button type="button" id="botaoVoltarMeusPedidos">
+                ← Voltar para solicitar materiais
+            </button>
+
+        </section>
+
+        <!-- Tela de acesso do doador -->
+        <section id="telaAcessoDoador" class="tela-escondida">
+
+            <h1>Já sou doador</h1>
+
+            <p>
+                Informe o e-mail utilizado no seu cadastro.
+            </p>
+
+            <form id="formularioAcessoDoador">
+
+                <label for="emailAcessoDoador">
+                    E-mail
+                </label>
+
+                <input
+                    type="email"
+                    id="emailAcessoDoador"
+                    placeholder="Digite seu e-mail"
+                    required
+                >
+
+                <button type="submit">
+                    Continuar
+                </button>
+
+            </form>
+
+            <button id="botaoVoltarAcesso">
+                ← Voltar
+            </button>
+
+        </section>
+
         <!-- Tela de pedidos disponíveis -->
         <section id="telaPedidos" class="tela-escondida">
 
@@ -98,7 +325,27 @@
                     Veja os materiais que os estudantes estão precisando.
                 </p>
 
+                <button id="botaoMeusInteresses">
+                    Meus interesses
+               </button>
+
                 <div id="listaPedidos"></div>
+
+        </section>
+
+        <section id="telaInteresses" class="tela-escondida">
+
+            <h1>Meus interesses</h1>
+
+            <p>
+                Veja os pedidos nos quais você demonstrou interesse.
+            </p>
+
+            <div id="listaInteresses"></div>
+
+            <button id="botaoVoltarPedidos">
+                ← Voltar para pedidos
+           </button>
 
         </section>
 
