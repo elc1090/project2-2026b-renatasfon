@@ -2,6 +2,7 @@ import express from "express";
 import prisma from "./prisma.js";
 import usuariosRoutes from "./routes/usuarios.routes.js";
 import materiaisRoutes from "./routes/materiais.routes.js";
+import pedidosRoutes from "./routes/pedidos.routes.js";
 
 const app = express();
 
@@ -15,6 +16,7 @@ app.get("/", (req, res) => {
 
 app.use("/usuarios", usuariosRoutes);
 app.use("/materiais", materiaisRoutes);
+app.use("/pedidos", pedidosRoutes);
 
 
 app.listen(3000, () => {
