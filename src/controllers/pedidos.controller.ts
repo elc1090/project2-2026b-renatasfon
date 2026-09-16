@@ -119,3 +119,49 @@ export async function criarPedido(req: Request, res: Response) {
         });
     }
 }
+
+export async function atenderPedido(req: Request, res: Response) {
+    const pedidoId = Number(req.params.id);
+
+    if (!pedidoId) {
+        return res.status(400).json({
+            erro: "ID do pedido inválido."
+        });
+    }
+
+    try {
+        const pedido = await prisma.pedido.findUnique({
+            where: {
+                id: pedidoId
+            }
+        });
+
+        if (!pedido) {
+            return res.status(404).json({
+                erro: "Pedido não encontrado."
+            });
+        }
+
+        if (pedido.status !== "EM_ANDAMENTO") {
+            return res.status(400).json({
+                erro: "Apenas pedidos em andamento podem ser atendidos."
+            });
+        }
+
+        const pedidoAtualizado = await prisma.pedido.update({
+            where: {
+                id: pedidoId
+            },
+            data: {
+                status: "ATENDIDO"
+            }
+        });
+
+        return res.json(pedidoAtualizado);
+
+    } catch (erro) {
+        return res.status(500).json({
+            erro: "Erro interno do servidor."
+        });
+    }
+}
