@@ -230,3 +230,95 @@ export async function listarPedidosDoAluno(
         });
     }
 }
+
+export async function deletarUsuario(
+    req: Request,
+    res: Response
+) {
+    const id = Number(req.params.id);
+
+    if (!Number.isInteger(id) || id <= 0) {
+        return res.status(400).json({
+            erro: "ID do usuário inválido."
+        });
+    }
+
+    try {
+        const usuario = await prisma.usuario.findUnique({
+            where: { id }
+        });
+
+        if (!usuario) {
+            return res.status(404).json({
+                erro: "Usuário não encontrado."
+            });
+        }
+
+        await prisma.$transaction(async (tx) => {
+
+            // Remove os interesses em que o usuário é doador
+            await tx.interesse.deleteMany({
+                where: {
+                    doadorId: id
+                }
+            });
+
+            // Busca os pedidos do aluno
+            const pedidos = await tx.pedido.findMany({
+                where: {
+                    alunoId: id
+                },
+                select: {
+                    id: true
+                }
+            });
+
+            const pedidosIds = pedidos.map((pedido) => pedido.id);
+
+            // Remove os interesses relacionados aos pedidos
+            if (pedidosIds.length > 0) {
+                await tx.interesse.deleteMany({
+                    where: {
+                        pedidoId: {
+                            in: pedidosIds
+                        }
+                    }
+                });
+
+                // Remove os materiais relacionados aos pedidos
+                await tx.pedidoMaterial.deleteMany({
+                    where: {
+                        pedidoId: {
+                            in: pedidosIds
+                        }
+                    }
+                });
+
+                // Remove os pedidos do aluno
+                await tx.pedido.deleteMany({
+                    where: {
+                        alunoId: id
+                    }
+                });
+            }
+
+            // Finalmente remove o usuário
+            await tx.usuario.delete({
+                where: {
+                    id
+                }
+            });
+        });
+
+        return res.json({
+            mensagem: "Usuário excluído com sucesso."
+        });
+
+    } catch (erro) {
+        console.error("Erro ao deletar usuário:", erro);
+
+        return res.status(500).json({
+            erro: "Erro interno do servidor."
+        });
+    }
+}

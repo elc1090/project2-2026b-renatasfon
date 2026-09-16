@@ -12,7 +12,8 @@ export async function listarPedidos(req: Request, res: Response) {
                 },
                 aluno: {
                     select: {
-                        nome: true
+                        nome: true,
+                        matricula: true
                     }
                 }
             }

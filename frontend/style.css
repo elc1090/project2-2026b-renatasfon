@@ -1,551 +1,364 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap');
+
+:root {
+    /* Fundo do site: branco */
+    --cor-fundo: #FFFFFF;
+    --cor-cartao: #FFFFFF;
+
+    /* Rosa claro usado no bloco de apresentação da tela inicial */
+    --cor-bloco-apresentacao: #FCEAF0;
+
+    /* Rosa mais suave, usado como padrão do sistema */
+    --cor-primaria: #F1A3B7;
+    --cor-primaria-escura: #C2577A;
+
+    /* Cor que acompanha o rosa, para a tela principal não ficar monocromática */
+    --cor-par: #9B8FE0;
+    --cor-par-escura: #6C60B8;
+
+    --cor-secundaria: #4FBFC4;
+    --cor-secundaria-escura: #2C8E92;
+
+    --cor-destaque: #FFC94D;
+    --cor-destaque-escura: #C98A1A;
+
+    --cor-texto: #362A31;
+    --cor-texto-suave: #6E5B62;
+    --cor-borda: #F0D9E0;
+
+    --sombra-cartao: 0 4px 14px rgba(198, 53, 90, 0.10);
+}
+
 * {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+    font-family: 'Nunito', Arial, sans-serif;
 }
 
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f5f5f5;
-    min-height: 100vh;
-}
-
-main {
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-#telaInicial {
-    width: 90%;
-    max-width: 700px;
-    text-align: center;
-    background-color: white;
-    padding: 50px;
-    border-radius: 20px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-}
-
-#telaInicial h1 {
-    font-size: 42px;
-    margin-bottom: 20px;
-}
-
-#telaInicial h2 {
-    font-size: 22px;
-    margin-bottom: 15px;
-    font-weight: normal;
-}
-
-#telaInicial p {
-    font-size: 17px;
-    line-height: 1.6;
-    margin-bottom: 35px;
-}
-
-#telaInicial h3 {
-    font-size: 20px;
-    margin-bottom: 20px;
-}
-
-.opcoes {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-}
-
-.opcoes button {
-    padding: 15px 30px;
-    border: none;
-    border-radius: 10px;
-    font-size: 16px;
-    cursor: pointer;
-}
-
-.opcoes button:hover {
-    opacity: 0.85;
-}
-
-.tela-escondida {
-    display: none;
-}
-
-#telaDoador {
-    width: 90%;
-    max-width: 500px;
-    text-align: center;
-    background-color: white;
-    padding: 50px;
-    border-radius: 20px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-}
-
-#telaDoador h1 {
-    font-size: 32px;
-    margin-bottom: 15px;
-}
-
-#telaDoador p {
-    font-size: 17px;
-    margin-bottom: 30px;
-    line-height: 1.5;
-}
-
-#formularioDoador {
-    display: flex;
-    flex-direction: column;
-    text-align: left;
-}
-
-#formularioDoador label {
-    margin-bottom: 6px;
-    font-weight: bold;
-}
-
-#formularioDoador input {
-    padding: 12px;
-    margin-bottom: 20px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    font-size: 16px;
-}
-
-#formularioDoador button {
-    padding: 14px;
-    border: none;
-    border-radius: 8px;
-    font-size: 16px;
-    cursor: pointer;
-}
-
-#botaoVoltar {
-    margin-top: 20px;
-    padding: 10px 20px;
-    border: none;
-    background: none;
-    font-size: 15px;
-    cursor: pointer;
-}
-
-/* Tela de pedidos */
-
-#telaPedidos {
-    width: 90%;
-    max-width: 800px;
-    text-align: center;
-    background-color: white;
-    padding: 50px;
-    border-radius: 20px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-}
-
-#telaPedidos h1 {
-    font-size: 32px;
-    margin-bottom: 15px;
-}
-
-#telaPedidos > p {
-    font-size: 17px;
-    margin-bottom: 30px;
-    line-height: 1.5;
-}
-
-#listaPedidos {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    text-align: left;
-}
-
-#listaPedidos > div {
-    border: 1px solid #ddd;
-    border-radius: 12px;
     padding: 20px;
+    background-color: var(--cor-fundo);
+    color: var(--cor-texto);
+    min-height: 100vh;
 }
 
-#listaPedidos h2 {
-    font-size: 21px;
-    margin-bottom: 10px;
+.tela {
+    position: relative;
+    max-width: 600px;
+    margin: 0 auto;
+    background: var(--cor-cartao);
+    padding: 28px 24px;
+    border-radius: 14px;
+    box-shadow: var(--sombra-cartao);
+    border: 1px solid var(--cor-borda);
 }
 
-#listaPedidos p {
-    font-size: 16px;
-    line-height: 1.5;
+.tela-inicial {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 8px 4px;
+}
+
+/* Card exclusivo para as ações (Doador / Aluno / Escola), separado do texto.
+   Fica mais estreito que o texto e centralizado, para manter o foco nos botões. */
+.cartao-acoes {
+    max-width: 480px;
+    margin: 0 auto;
+    background: var(--cor-cartao);
+    padding: 28px 24px;
+    border-radius: 14px;
+    box-shadow: var(--sombra-cartao);
+    border: 1px solid var(--cor-borda);
+}
+
+/* Quando a tela tem botão fixo (voltar / meus pedidos), abre espaço no topo
+   para o conteúdo não ficar escondido atrás do botão */
+.tela:has(.botao-voltar),
+.tela:has(.botao-topo-direita) {
+    padding-top: 76px;
+}
+
+/* Classe responsável pela navegação entre telas */
+.tela-escondida {
+    display: none !important;
+}
+
+h1 {
+    font-size: 1.9rem;
+    font-weight: 800;
+    color: var(--cor-primaria-escura);
+    margin-bottom: 14px;
+}
+
+h2 {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--cor-primaria-escura);
+    margin-bottom: 16px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 15px;
+}
+
+input[type="text"],
+input[type="email"],
+textarea {
+    padding: 11px 12px;
+    border: 1.5px solid var(--cor-borda);
+    border-radius: 8px;
+    width: 100%;
+    font-size: 0.98rem;
+    color: var(--cor-texto);
+    background-color: #FFFDFB;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+textarea:focus {
+    outline: none;
+    border-color: var(--cor-primaria);
+}
+
+button {
+    padding: 11px 18px;
+    border: none;
+    border-radius: 8px;
+    background-color: var(--cor-primaria);
+    color: white;
+    font-weight: 700;
+    font-size: 0.96rem;
+    cursor: pointer;
+    margin-top: 5px;
+    transition: background-color 0.15s ease, transform 0.1s ease;
+}
+
+button:hover {
+    background-color: var(--cor-primaria-escura);
+}
+
+button:active {
+    transform: scale(0.98);
+}
+
+/* Botões de tela inicial, empilhados e com respiro entre eles */
+#telaInicial button {
+    width: 100%;
+    margin-top: 10px;
+}
+
+/* Cor par do rosa, para a tela principal ter duas cores de destaque */
+.botao-par {
+    background-color: var(--cor-par);
+}
+
+.botao-par:hover {
+    background-color: var(--cor-par-escura);
+}
+
+/* Acesso Escola: discreto, só quem já sabe que ele existe vai reparar */
+#botaoAcessoEscola {
+    width: auto;
+    display: block;
+    margin: 28px auto 0 auto;
+    padding: 4px 8px;
+    background-color: transparent;
+    color: var(--cor-texto-suave);
+    font-weight: 400;
+    font-size: 0.78rem;
+    text-decoration: underline;
+    text-decoration-color: transparent;
+    border-radius: 4px;
+    opacity: 0.6;
+}
+
+#botaoAcessoEscola:hover {
+    background-color: transparent;
+    color: var(--cor-texto);
+    opacity: 1;
+    text-decoration-color: var(--cor-texto-suave);
+}
+
+/* ===== Texto de apresentação da tela inicial ===== */
+.apresentacao-projeto {
+    background-color: var(--cor-bloco-apresentacao);
+    border-radius: 16px;
+    padding: 36px 32px;
+    margin: 4px 0 24px 0;
+}
+
+.apresentacao-projeto p {
+    font-size: 1.08rem;
+    line-height: 1.75;
+    color: var(--cor-texto-suave);
+    margin-bottom: 16px;
+}
+
+.apresentacao-projeto p:last-child {
+    margin-bottom: 0;
+}
+
+.apresentacao-projeto .frase-destaque {
+    font-size: 1.28rem;
+    font-weight: 700;
+    color: var(--cor-primaria-escura);
+    line-height: 1.55;
+    margin-bottom: 20px;
+}
+
+/* ===== Navegação fixa ===== */
+.botao-voltar {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background-color: var(--cor-secundaria);
+    color: white;
+    padding: 9px 16px;
+    border-radius: 999px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    box-shadow: 0 3px 10px rgba(44, 142, 146, 0.25);
+    z-index: 10;
+}
+
+.botao-voltar::before {
+    content: "←";
+    font-size: 1rem;
+}
+
+.botao-voltar:hover {
+    background-color: var(--cor-secundaria-escura);
+}
+
+.botao-topo-direita {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: var(--cor-destaque);
+    color: #4A3200;
+    padding: 9px 16px;
+    border-radius: 999px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    box-shadow: 0 3px 10px rgba(201, 138, 26, 0.25);
+    z-index: 10;
+}
+
+.botao-topo-direita:hover {
+    background-color: var(--cor-destaque-escura);
+    color: white;
+}
+
+/* ===== Cards de materiais / pedidos — empilhados, um abaixo do outro ===== */
+div[id^="lista"] {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin: 6px 0 10px 0;
+}
+
+div[id^="lista"] > div {
+    border: 1px solid var(--cor-borda);
+    border-left: 5px solid var(--cor-primaria);
+    padding: 18px;
+    border-radius: 10px;
+    background: #FFFDFB;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+div[id^="lista"] > div h2 {
+    font-size: 1.15rem;
     margin-bottom: 8px;
 }
 
-#listaPedidos h2 {
-    font-size: 21px;
-    margin-bottom: 15px;
-}
-
-#listaPedidos p {
-    font-size: 16px;
-    line-height: 1.5;
-    margin-bottom: 12px;
-}
-
-#listaPedidos ul {
-    margin: 0 0 20px 20px;
-    line-height: 1.7;
-}
-
-.botaoInteresse {
-    width: 100%;
-    padding: 12px;
-    border: none;
-    border-radius: 8px;
-    font-size: 16px;
-    cursor: pointer;
-}
-
-.botaoInteresse:hover {
-    opacity: 0.85;
-}
-
-/* Tela de acesso do doador */
-
-#telaAcessoDoador {
-    width: 90%;
-    max-width: 500px;
-    text-align: center;
-    background-color: white;
-    padding: 50px;
-    border-radius: 20px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-}
-
-#telaAcessoDoador h1 {
-    font-size: 32px;
-    margin-bottom: 15px;
-}
-
-#telaAcessoDoador p {
-    font-size: 17px;
-    margin-bottom: 30px;
-    line-height: 1.5;
-}
-
-#formularioAcessoDoador {
-    display: flex;
-    flex-direction: column;
-    text-align: left;
-}
-
-#formularioAcessoDoador label {
+div[id^="lista"] > div p {
+    color: var(--cor-texto-suave);
     margin-bottom: 6px;
-    font-weight: bold;
-}
-
-#formularioAcessoDoador input {
-    padding: 12px;
-    margin-bottom: 20px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    font-size: 16px;
-}
-
-#formularioAcessoDoador button {
-    padding: 14px;
-    border: none;
-    border-radius: 8px;
-    font-size: 16px;
-    cursor: pointer;
-}
-
-#botaoVoltarAcesso {
-    margin-top: 20px;
-    padding: 10px 20px;
-    border: none;
-    background: none;
-    font-size: 15px;
-    cursor: pointer;
-}
-
-.acessoDoador {
-    margin-top: 25px;
-    font-size: 15px;
-}
-
-.acessoDoador button {
-    border: none;
-    background: none;
-    text-decoration: underline;
-    cursor: pointer;
-    font-size: 15px;
-}
-/* Tela do aluno */
-
-#telaAluno {
-    width: 90%;
-    max-width: 500px;
-    text-align: center;
-    background-color: white;
-    padding: 50px;
-    border-radius: 20px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-}
-
-#telaAluno h1 {
-    font-size: 32px;
-    margin-bottom: 15px;
-}
-
-#telaAluno p {
-    font-size: 17px;
-    margin-bottom: 30px;
     line-height: 1.5;
 }
 
-#formularioAluno {
-    display: flex;
-    flex-direction: column;
-    text-align: left;
+div[id^="lista"] > div ul {
+    margin-left: 20px;
+    margin-bottom: 10px;
 }
 
-#formularioAluno label {
-    margin-bottom: 6px;
-    font-weight: bold;
+/* Ações positivas (demonstrar interesse / confirmar doação) em tom teal,
+   para se distinguir das ações de envio de formulário */
+.botaoInteresse,
+.botaoAtenderPedido {
+    background-color: var(--cor-secundaria);
 }
 
-#formularioAluno input {
-    padding: 12px;
-    margin-bottom: 20px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    font-size: 16px;
-}
-
-#formularioAluno button {
-    padding: 14px;
-    border: none;
-    border-radius: 8px;
-    font-size: 16px;
-    cursor: pointer;
-}
-
-#botaoVoltarAluno {
-    margin-top: 20px;
-    padding: 10px 20px;
-    border: none;
-    background: none;
-    font-size: 15px;
-    cursor: pointer;
-}
-
-/* Tela de criação do pedido */
-
-#telaCriarPedido {
-    width: 90%;
-    max-width: 600px;
-    background-color: white;
-    padding: 50px;
-    border-radius: 20px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-}
-
-#telaCriarPedido h1 {
-    font-size: 32px;
-    margin-bottom: 15px;
-    text-align: center;
-}
-
-#telaCriarPedido > p {
-    font-size: 17px;
-    margin-bottom: 30px;
-    line-height: 1.5;
-    text-align: center;
-}
-
-#formularioPedido {
-    display: flex;
-    flex-direction: column;
-}
-
-#formularioPedido label {
-    margin-bottom: 6px;
-    font-weight: bold;
-}
-
-#formularioPedido input[type="text"],
-#formularioPedido textarea {
-    padding: 12px;
-    margin-bottom: 20px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    font-size: 16px;
-    font-family: Arial, sans-serif;
-}
-
-#formularioPedido textarea {
-    min-height: 100px;
-    resize: vertical;
-}
-
-.tituloMateriais {
-    margin-bottom: 15px;
-    font-weight: bold;
-}
-
-#listaMateriais {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    margin-bottom: 25px;
+.botaoInteresse:hover,
+.botaoAtenderPedido:hover {
+    background-color: var(--cor-secundaria-escura);
 }
 
 .material-item {
     display: flex;
     align-items: center;
-    gap: 10px;
-    font-weight: normal !important;
-    cursor: pointer;
-}
-
-.material-item input {
-    width: 18px;
-    height: 18px;
-}
-
-#formularioPedido > button {
-    padding: 14px;
-    border: none;
-    border-radius: 8px;
-    font-size: 16px;
-    cursor: pointer;
-}
-
-#botaoVoltarCriarPedido {
-    display: block;
-    margin: 20px auto 0;
-    padding: 10px 20px;
-    border: none;
-    background: none;
-    font-size: 15px;
-    cursor: pointer;
+    gap: 8px;
+    margin: 8px 0;
+    font-size: 0.98rem;
 }
 
 .campo-outro {
-    padding: 12px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    font-size: 16px;
     margin-top: 5px;
 }
 
-/* Escolha do aluno */
-
-#telaEscolhaAluno {
-    width: 90%;
-    max-width: 500px;
-    text-align: center;
-    background-color: white;
-    padding: 50px;
-    border-radius: 20px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-}
-
-#telaEscolhaAluno h1 {
-    font-size: 32px;
-    margin-bottom: 15px;
-}
-
-#telaEscolhaAluno p {
-    font-size: 17px;
-    margin-bottom: 30px;
-}
-
-.opcoesAluno {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
-
-.opcoesAluno button {
-    padding: 14px;
-    border: none;
-    border-radius: 8px;
-    font-size: 16px;
-    cursor: pointer;
-}
-
-#botaoVoltarEscolhaAluno {
-    margin-top: 20px;
-    padding: 10px 20px;
-    border: none;
-    background: none;
-    font-size: 15px;
-    cursor: pointer;
-}
-
-
-/* Acesso do aluno */
-
-#telaAcessoAluno {
-    width: 90%;
-    max-width: 500px;
-    text-align: center;
-    background-color: white;
-    padding: 50px;
-    border-radius: 20px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-}
-
-#telaAcessoAluno h1 {
-    font-size: 32px;
-    margin-bottom: 15px;
-}
-
-#telaAcessoAluno p {
-    font-size: 17px;
-    margin-bottom: 30px;
-    line-height: 1.5;
-}
-
-#formularioAcessoAluno {
-    display: flex;
-    flex-direction: column;
-    text-align: left;
-}
-
-#formularioAcessoAluno label {
-    margin-bottom: 6px;
-    font-weight: bold;
-}
-
-#formularioAcessoAluno input {
-    padding: 12px;
-    margin-bottom: 20px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    font-size: 16px;
-}
-
-#formularioAcessoAluno button {
-    padding: 14px;
-    border: none;
-    border-radius: 8px;
-    font-size: 16px;
-    cursor: pointer;
-}
-
-#botaoVoltarAcessoAluno {
-    margin-top: 20px;
-    padding: 10px 20px;
-    border: none;
-    background: none;
-    font-size: 15px;
-    cursor: pointer;
-}
-
-#botaoMeusPedidos {
-    display: block;
-    margin-left: auto;
+ul {
+    margin-left: 20px;
     margin-bottom: 10px;
-    padding: 10px 18px;
+}
+
+/* ===== Popup de mensagens (substitui alert()) ===== */
+.popup-mensagem {
+    position: fixed;
+    top: -100px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    max-width: 90%;
+    padding: 14px 18px;
+    border-radius: 10px;
+    background-color: var(--cor-primaria-escura);
+    color: white;
+    font-weight: 700;
+    font-size: 0.95rem;
+    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.18);
+    z-index: 100;
+    transition: top 0.3s ease;
+}
+
+.popup-mensagem.popup-visivel {
+    top: 20px;
+}
+
+.popup-mensagem.popup-sucesso {
+    background-color: var(--cor-secundaria-escura);
+}
+
+.popup-mensagem #popupMensagemFechar {
+    background: transparent;
     border: none;
-    border-radius: 8px;
-    font-size: 15px;
+    color: white;
+    font-size: 1.3rem;
+    line-height: 1;
+    padding: 0;
+    margin: 0;
     cursor: pointer;
+}
+
+.popup-mensagem #popupMensagemFechar:hover {
+    background: transparent;
+    opacity: 0.8;
 }
