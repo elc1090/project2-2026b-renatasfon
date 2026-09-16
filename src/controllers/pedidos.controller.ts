@@ -9,6 +9,11 @@ export async function listarPedidos(req: Request, res: Response) {
                     include: {
                         material: true
                     }
+                },
+                aluno: {
+                    select: {
+                        nome: true
+                    }
                 }
             }
         });
