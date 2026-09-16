@@ -126,7 +126,7 @@ formularioAcessoDoador.addEventListener("submit", async function (evento) {
 
     try {
         const resposta = await fetch(
-            `http://localhost:3000/usuarios/doador?email=${encodeURIComponent(email)}`
+            `/usuarios/doador?email=${encodeURIComponent(email)}`
         );
         const dados = await resposta.json();
 
@@ -152,7 +152,7 @@ formularioDoador.addEventListener("submit", async function (evento) {
     const email = document.getElementById("emailDoador").value;
 
     try {
-        const resposta = await fetch("http://localhost:3000/usuarios", {
+        const resposta = await fetch("/usuarios", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ nome, email, tipo: "DOADOR" })
@@ -182,7 +182,7 @@ formularioAluno.addEventListener("submit", async function (evento) {
     const matricula = document.getElementById("matriculaAluno").value;
 
     try {
-        const resposta = await fetch("http://localhost:3000/usuarios", {
+        const resposta = await fetch("/usuarios", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ nome, matricula, tipo: "ALUNO" })
@@ -214,7 +214,7 @@ formularioAcessoAluno.addEventListener("submit", async function (evento) {
 
     try {
         const resposta = await fetch(
-            `http://localhost:3000/usuarios/aluno?matricula=${encodeURIComponent(matricula)}&nome=${encodeURIComponent(nome)}`
+            `/usuarios/aluno?matricula=${encodeURIComponent(matricula)}&nome=${encodeURIComponent(nome)}`
         );
         const dados = await resposta.json();
 
@@ -237,7 +237,7 @@ formularioAcessoAluno.addEventListener("submit", async function (evento) {
 // Carregar Pedidos para o Doador
 async function carregarPedidos() {
     try {
-        const resposta = await fetch("http://localhost:3000/pedidos");
+        const resposta = await fetch("/pedidos");
         const pedidos = await resposta.json();
 
         if (!resposta.ok) {
@@ -286,7 +286,7 @@ async function demonstrarInteresse(pedidoId) {
     }
 
     try {
-        const resposta = await fetch("http://localhost:3000/interesses", {
+        const resposta = await fetch("/interesses", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
@@ -318,7 +318,7 @@ async function carregarInteresses() {
     }
 
     try {
-        const resposta = await fetch(`http://localhost:3000/interesses/doador/${doadorId}`);
+        const resposta = await fetch(`/interesses/doador/${doadorId}`);
         const interesses = await resposta.json();
 
         if (!resposta.ok) {
@@ -364,7 +364,7 @@ async function carregarInteresses() {
 
 async function carregarMateriais() {
     try {
-        const resposta = await fetch("http://localhost:3000/materiais");
+        const resposta = await fetch("/materiais");
         const materiais = await resposta.json();
 
         if (!resposta.ok) {
@@ -455,7 +455,7 @@ formularioPedido.addEventListener("submit", async function (evento) {
     }
 
     try {
-        const resposta = await fetch("http://localhost:3000/pedidos", {
+        const resposta = await fetch("/pedidos", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
@@ -499,7 +499,7 @@ async function carregarMeusPedidos() {
 
     try {
         const resposta = await fetch(
-            `http://localhost:3000/usuarios/aluno/${alunoId}/pedidos`
+            `/usuarios/aluno/${alunoId}/pedidos`
         );
         const pedidos = await resposta.json();
 
@@ -545,7 +545,7 @@ async function carregarMeusPedidos() {
 
 async function carregarPedidosEscola() {
     try {
-        const resposta = await fetch("http://localhost:3000/pedidos");
+        const resposta = await fetch("/pedidos");
         const pedidos = await resposta.json();
 
         if (!resposta.ok) {
@@ -604,7 +604,7 @@ listaPedidosEscola.addEventListener("click", async function (evento) {
 
         try {
             const resposta = await fetch(
-                `http://localhost:3000/pedidos/${pedidoId}/atender`,
+                `/${pedidoId}/atender`,
                 { method: "PATCH" }
             );
 

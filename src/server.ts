@@ -1,5 +1,6 @@
 import express from "express";
 import cors from "cors";
+import path from "path";
 
 import prisma from "./prisma.js";
 import usuariosRoutes from "./routes/usuarios.routes.js";
@@ -12,10 +13,10 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
+app.use(express.static(path.join(process.cwd(), "frontend")));
+
 app.get("/", (req, res) => {
-    res.json({
-        mensagem: "API Doe Escola funcionando!"
-    });
+    res.sendFile(path.join(process.cwd(), "frontend", "index.html"));
 });
 
 app.use("/usuarios", usuariosRoutes);
@@ -24,6 +25,8 @@ app.use("/pedidos", pedidosRoutes);
 app.use("/interesses", interessesRoutes);
 
 
-app.listen(3000, () => {
-    console.log("Servidor rodando em http://localhost:3000");
+const PORT = process.env.PORT || 3000;
+
+app.listen(PORT, () => {
+    console.log(`Servidor rodando na porta ${PORT}`);
 });
