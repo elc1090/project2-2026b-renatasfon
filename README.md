@@ -1,8 +1,7 @@
 # project2-2026b-renatasfon
 # Projeto: Aplicação com persistência de dados em backend
 
-![Substitua a imagem ao lado por um GIF/WEBP animado mostrando seu projeto](./moho_follow_through2.gif "GIF animado do projeto. Imagem temporária de Moho Animation https://moho.lostmarble.com/products/moho-pro-special-halls-head-college")
-
+<img width="1310" height="590" alt="educa" src="https://github.com/user-attachments/assets/680bfd89-a7ed-498d-b2e9-1323e4baec77" />
 
 
 ## Acesso
@@ -19,15 +18,17 @@ Sistemas de informação
 ## Proposta
 Modalidade: A 
 
-Proposta (funcionalidades alinhadas com os requisitos do segundo projeto): 
+Proposta:  
 Aplicação web para conectar alunos de escolas públicas a pessoas interessadas em ajudá-los, permitindo cadastrar, consultar, atualizar e excluir pedidos de materiais escolares, uniformes, mochilas e outros recursos. Os alunos podem cadastrar suas necessidades, enquanto os doadores podem consultar os pedidos disponíveis e demonstrar interesse em realizar uma doação.
 
 
 
 ## Parceria/cliente/usuário
 Parceria: Lauren Auth Lugoch
+
+
 ## Feedback/comentário da parceria/cliente/usuário
-Substitua este texto por um feedback produzido pelo(a) colega parceiro(a). Na modalidade A (parceria dev), o foco principal do feedback/comentário estará nas diferenças percebidas no código. Na modalidade B (parceria cliente/usuário), o foco principal do feedback/comentário estará nas funcionalidades/interface.
+Ainda não definido
 
 ## Desenvolvimento
 
