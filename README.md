@@ -6,7 +6,7 @@
 
 ## Acesso
 
-educajunto-production.up.railway.app
+http://educajunto-production.up.railway.app
 
 
 ## Desenvolvedor(a)
@@ -16,7 +16,8 @@ Sistemas de informação
 
 
 ## Proposta
-Modalidade: A 
+Modalidade:  
+A 
 
 Proposta:  
 Aplicação web para conectar alunos de escolas públicas a pessoas interessadas em ajudá-los, permitindo cadastrar, consultar, atualizar e excluir pedidos de materiais escolares, uniformes, mochilas e outros recursos. Os alunos podem cadastrar suas necessidades, enquanto os doadores podem consultar os pedidos disponíveis e demonstrar interesse em realizar uma doação.
@@ -28,21 +29,31 @@ Parceria: Lauren Auth Lugoch
 
 
 ## Feedback/comentário da parceria/cliente/usuário
-Ainda não definido
+Ao comparar os dois projetos, percebi algumas diferenças principalmente nas tecnologias e na forma de organizar o código. A Renata utilizou TypeScript com Node.js e Express no backend, enquanto eu utilizei Python com Flask. Também utilizamos formas diferentes de trabalhar com o banco de dados, ela utilizou o Prisma, enquanto eu utilizei a biblioteca psycopg e consultas SQL diretamente.
+
+No backend, a Renata separou as rotas dos controllers, deixando a lógica das operações nos controllers, enquanto no meu projeto a lógica das operações fica junto com as rotas. Também estruturamos o banco de dados de formas diferentes. No projeto da Renata, alunos e doadores ficam em uma tabela Usuario, diferenciados por um campo tipo, enquanto no meu projeto eles ficam em tabelas separadas. Além disso, ela utiliza os recursos do Prisma, como include e select, para buscar informações relacionadas entre as tabelas, enquanto eu utilizei consultas SQL com JOIN.
+
+No frontend, as duas utilizaram as mesmas tecnologias, HTML, CSS e JavaScript, mas a Renata organizou a aplicação em uma única página com diferentes telas, controladas pelo script.js. No meu projeto, a estrutura é mais separada entre HTML, CSS e JavaScript, com o script.js sendo utilizado principalmente para fazer as requisições à API e atualizar os dados da página.
 
 ## Desenvolvimento
 
 ### Processo
 
-Escolhi desenvolver este projeto em TypeScript por ser uma linguagem que eu ainda não tinha codado, mas que tinha muito interesse em aprender devido à sua importância no mercado de desenvolvimento web.
+### Processo
 
-Ao longo do desenvolvimento, a adaptação à linguagem foi tranquila; um vídeo explicativo que assisti no início me deu uma boa base para começar. Os maiores desafios surgiram na integração do ORM Prisma com o banco de dados PostgreSQL, tecnologias que eu nunca tinha utilizado. Como essa comunicação entre eles era novidade para mim, utilizei a IA para entender como acontecia essa "conversa" entre eles, o que me ajudou a destravar no aprendizado, mas ainda acho complicado e não entendi 100% como trabalha-los.
+Escolhi desenvolver este projeto em TypeScript por ser uma linguagem que eu ainda não havia utilizado, mas que tinha interesse em aprender por sua aplicação no desenvolvimento web. Para o backend, também optei por utilizar Node.js, Express e Prisma, trabalhando com PostgreSQL no banco de dados. Isso fez com que boa parte do projeto fosse construída com tecnologias novas para mim.
 
-Durante o processo, também enfrentei um problema técnico na minha máquina: a falta de memória deixou o sistema lento e impediu a instalação das dependências do banco de dados. Precisei pausar o projeto enquanto arrumava o meu computador, mas, após resolver essa parte, consegui retomar o desenvolvimento novamente.
+No início, utilizei um vídeo explicativo para entender a estrutura básica do TypeScript e do Express. A partir dessa base, fui desenvolvendo a aplicação aos poucos, começando pela configuração do servidor e pela comunicação com o banco de dados. A integração entre Prisma e PostgreSQL foi uma das etapas que mais exigiu aprendizado, principalmente por ser a primeira vez que utilizei um ORM. Nesse processo, utilizei a IA como apoio para entender conceitos e resolver dúvidas, mas também fui testando as operações na prática para entender melhor como as diferentes partes do sistema se relacionavam.
 
-Em relação à metodologia, não tive grandes erros de lógica ou erros com a linguagem e arquivos, tanto porque me adaptei muito bem ao TypeScript, quanto porque optei por construir o sistema de forma modular. A cada parte concluída, eu já realizava testes pelo terminal para validar se tudo estava funcionando. Eessa prática facilitou bastante o encadeamento das próximas etapas, pois uma funcionalidade servia de base para a outra.
+Uma das escolhas que fiz durante o desenvolvimento foi manter o backend organizado em `routes` e `controllers`. Em vez de concentrar toda a lógica em um único arquivo, fui separando as responsabilidades conforme novas funcionalidades eram adicionadas. Isso também facilitou a realização dos testes, pois eu conseguia desenvolver uma funcionalidade, testar sua resposta pelo terminal e só depois utilizá-la como base para a próxima etapa.
 
-No final, o maior gargalo foi a etapa de deploy. Como era minha primeira vez usando o Railway, a IA tentou me ajudar em um erro que aconteceu durante o processo, mas não conseguiu identificar a causa do erro. Recorri então a própria plataforma: mesmo sem familiaridade com o sistema, explorei os painéis e configurações até descobrir que o problema era simples, bastava atualizar a URL que eu tinha configurado no sistema dentro das variáveis do Railway.
+Durante o desenvolvimento, também tive alguns problemas relacionados ao ambiente de desenvolvimento. A falta de memória na minha máquina deixou o sistema lento e chegou a impedir a instalação de algumas dependências. Precisei interromper temporariamente o desenvolvimento para resolver esse problema e, depois disso, consegui retomar o projeto.
+
+Outra etapa importante foi a criação das regras de funcionamento do sistema. Ao longo do desenvolvimento, fui adicionando validações para situações como tipos diferentes de usuário, criação de pedidos, materiais e registro de interesse dos doadores. Os testes realizados pelo terminal ajudaram a encontrar esses problemas antes de avançar para as próximas partes da aplicação.
+
+O deploy foi a etapa que mais me deu trabalho. Como era minha primeira experiência utilizando o Railway, encontrei um erro durante a publicação que não consegui resolver inicialmente com a ajuda da IA. Acabei recorrendo aos próprios painéis e configurações da plataforma e, explorando as opções disponíveis, consegui descobrir que o problema estava relacionado à URL configurada nas variáveis do Railway. Depois de corrigir essa configuração, consegui finalizar o deploy e colocar a aplicação em funcionamento.
+
+Ao final do projeto, além de aprender uma nova linguagem e novas ferramentas, consegui entender melhor o processo de desenvolvimento de uma aplicação full-stack, desde a criação do banco e construção da API até os testes, integração com o frontend e deploy. O projeto também me mostrou a importância de testar cada etapa durante o desenvolvimento e de tentar resolver os problemas por conta própria quando uma solução inicial não funciona.  
 
 Concluo que foi uma ótima experiência de aprendizado, onde pude consolidar conhecimentos práticos de backend e desenvolvimento full-stack, além de exercitar a resolução autônoma de problemas.
 
@@ -55,7 +66,7 @@ Ainda não definidos
 ### Linguagens e afins
 
 Substitua este trecho por uma lista detalhada de tecnologias utilizadas:
-- TypeScript + node.js   
+- TypeScript + node.js + Express
 - HTML, CSS, Script.Js  
 - Postgres + Prisma  
 - Railway
@@ -73,7 +84,7 @@ Substitua este trecho por uma lista detalhada de tecnologias utilizadas:
 - Entendendo NodeJs            https://www.youtube.com/watch?v=kJVAdDrp19A  
 - Chat GPT                     geração de código  
 - Claude                       correção de bugs  
-- Documentação Railway
+
 
 
 ---
